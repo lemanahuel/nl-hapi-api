@@ -105,5 +105,5 @@ server.events.on('log', (event, tags) => {
   });
 
   await server.start();
-  console.log(`KOA-API server started on ${server.info.uri}`);
+  console.log(`HAPI-API server started on ${server.info.uri}`);
 })();
