@@ -21,7 +21,7 @@
     "node": "11.x.x",
     "npm": "6.x.x"
   },
-  "license": "BY-NC-SA",
+  "license": "CC-BY-NC-SA-3.0",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
     "async": "^2.6.2",
