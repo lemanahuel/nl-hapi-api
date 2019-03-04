@@ -20,16 +20,6 @@ process.on('unhandledRejection', err => {
   process.exit(1);
 });
 
-// server.log(['error', 'database', 'read']);
-server.events.on('response', request => {
-  console.log(request.method.toUpperCase() + ' ' + request.raw.req.url + ' --> ' + request.response.statusCode);
-});
-server.events.on('log', (event, tags) => {
-  if (tags.error) {
-    console.log(`Server error: ${event.error ? event.error.message : 'unknown'}`);
-  }
-});
-
 (async function init() {
   await server.register({
     plugin: require('hapi-cors'),
@@ -41,6 +31,23 @@ server.events.on('log', (event, tags) => {
   });
   await server.register(require('inert'));
   await server.register(require('vision'));
+  await server.register({
+    plugin: require('good'),
+    options: {
+      ops: {
+        interval: 1000
+      },
+      reporters: {
+        myConsoleReporter: [{
+          module: 'good-squeeze',
+          name: 'Squeeze',
+          args: [{ log: '*', response: '*' }]
+        }, {
+          module: 'good-console'
+        }, 'stdout']
+      }
+    },
+  });
 
   server.views({
     engines: {
