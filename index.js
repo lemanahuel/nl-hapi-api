@@ -4,6 +4,7 @@ const glob = require('glob');
 const path = require('path');
 const _ = require('lodash');
 const async = require('async');
+const Mustache = require('mustache');
 const db = require('./integrations/mongodb');
 
 db.connect();
@@ -38,6 +39,23 @@ server.events.on('log', (event, tags) => {
       // origins: config.DOMAINS_WHITE_LIST
     }
   });
+  await server.register(require('inert'));
+  await server.register(require('vision'));
+
+  server.views({
+    engines: {
+      html: {
+        compile: template => {
+          // Mustache.parse(template)
+          return context => {
+            return Mustache.render(template, context);
+          };
+        }
+      }
+    },
+    relativeTo: __dirname,
+    path: '.'
+  });
 
   await new Promise((resolve, reject) => {
     glob('./modules/**/*.routes.js', {}, (err, files) => {
@@ -46,6 +64,37 @@ server.events.on('log', (event, tags) => {
         cb(null);
       }, resolve);
     })
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/static',
+    handler: (request, h) => {
+      return h.file('public/static.html');
+    }
+  });
+  server.route({
+    method: 'GET',
+    path: '/docs',
+    handler: (request, h) => {
+      return h.view('public/docs.html', {
+        app: {
+          title: 'Probando templates en HAPI y MUSTACHE con VISION'
+        },
+        endpoints: _.map(server.table(), item => {
+          return {
+            method: item.method,
+            path: item.path,
+          };
+        })
+      });
+    },
+    options: {
+      cache: {
+        expiresIn: 1,
+        privacy: 'private'
+      }
+    }
   });
 
   await server.start();
