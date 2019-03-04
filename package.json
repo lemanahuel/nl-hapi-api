@@ -1,7 +1,7 @@
 {
-  "name": "hapi-api",
+  "name": "nl-hapi-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Restful API con HAPI.js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,6 +11,15 @@
     "name": "Nahuel Lema",
     "email": "lema.nahuel@gmail.com",
     "url": "https://www.linkedin.com/in/nahuellema/"
+  },
+  "homepage": "https://nl-hapi-api.herokuapp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lemanahuel/nl-hapi-api"
+  },
+  "engines": {
+    "node": "11.x.x",
+    "npm": "6.x.x"
   },
   "license": "ISC",
   "dependencies": {
