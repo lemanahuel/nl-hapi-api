@@ -31,23 +31,26 @@ process.on('unhandledRejection', err => {
   });
   await server.register(require('inert'));
   await server.register(require('vision'));
-  await server.register({
-    plugin: require('good'),
-    options: {
-      ops: {
-        interval: 1000
+
+  if (process.argv.NODE_ENV !== 'production') {
+    await server.register({
+      plugin: require('good'),
+      options: {
+        ops: {
+          interval: 1000
+        },
+        reporters: {
+          myConsoleReporter: [{
+            module: 'good-squeeze',
+            name: 'Squeeze',
+            args: [{ log: '*', response: '*' }]
+          }, {
+            module: 'good-console'
+          }, 'stdout']
+        }
       },
-      reporters: {
-        myConsoleReporter: [{
-          module: 'good-squeeze',
-          name: 'Squeeze',
-          args: [{ log: '*', response: '*' }]
-        }, {
-          module: 'good-console'
-        }, 'stdout']
-      }
-    },
-  });
+    });
+  }
 
   server.views({
     engines: {
