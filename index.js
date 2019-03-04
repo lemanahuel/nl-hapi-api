@@ -75,6 +75,13 @@ server.events.on('log', (event, tags) => {
   });
   server.route({
     method: 'GET',
+    path: '/',
+    handler: (request, h) => {
+      return h.redirect('/docs');
+    }
+  });
+  server.route({
+    method: 'GET',
     path: '/docs',
     handler: (request, h) => {
       return h.view('public/docs.html', {
