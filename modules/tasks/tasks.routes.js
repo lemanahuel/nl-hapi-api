@@ -81,6 +81,11 @@ module.exports = server => {
     method: 'PUT',
     path: '/tasks/{id}/images',
     config: {
+      payload: {
+        parse: true,
+        output: 'file',
+        maxBytes: 5242880 //5MB
+      },
       pre: [
         {
           method: middlewares.isValidDomain,

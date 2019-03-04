@@ -12,7 +12,7 @@ module.exports = class Cloudy {
   static uploadImages(images) {
     return new Promise((resolve, reject) => {
       let uploaded = [];
-      async.each(images.file, (file, cb) => {
+      async.each(_.isArray(images.file) ? images.file : [images.file], (file, cb) => {
         if (file && file.path) {
           Cloudinary.uploader.upload(file.path, res => {
             uploaded.push({
