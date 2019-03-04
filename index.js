@@ -11,7 +11,7 @@ db.connect();
 
 const server = Hapi.server({
   port: config.PORT,
-  host: 'localhost',
+  // host: 'localhost',
   // debug: { request: ['error'] }
 });
 
