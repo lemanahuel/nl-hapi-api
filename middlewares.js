@@ -7,6 +7,6 @@ module.exports = {
     if (_.includes(config.DOMAINS_WHITE_LIST, req.url.origin)) {
       return true;
     }
-    return Boom.badRequest({ origin: req.url.origin });
+    return Boom.badRequest(JSON.stringify({ origin: req.url.origin, DOMAINS_WHITE_LIST: config.DOMAINS_WHITE_LIST }));
   }
 };
