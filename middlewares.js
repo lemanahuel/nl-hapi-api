@@ -3,10 +3,10 @@ const Boom = require('boom');
 const config = require('./config/config');
 
 module.exports = {
-  isValidDomain: (request, h) => {
-    if (_.indexOf(config.DOMAINS_WHITE_LIST, request.url.origin) > -1) {
+  isValidDomain: (req, h) => {
+    if (_.includes(config.DOMAINS_WHITE_LIST, req.url.origin)) {
       return true;
     }
-    return Boom.badRequest('err-invalid-origin-domain', { origin: request.url.origin });
+    return Boom.badRequest({ origin: req.url.origin });
   }
 };
