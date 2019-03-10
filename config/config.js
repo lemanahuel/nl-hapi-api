@@ -6,5 +6,6 @@ module.exports = {
   WHITE_LIST_DOMAINS: ['http://localhost:5000', 'http://localhost:5001',
     'https://nl-static-www.herokuapp.com',
     'https://nl-hapi-www.herokuapp.com', 'https://nl-hapi-api.herokuapp.com',
-    'https://nl-hapi-www-prod.herokuapp.com', 'https://nl-hapi-api-prod.herokuapp.com']
+    'https://nl-hapi-www-prod.herokuapp.com', 'https://nl-hapi-api-prod.herokuapp.com',
+    'http://nl-hapi-www-prod.herokuapp.com', 'http://nl-hapi-api-prod.herokuapp.com']
 };
