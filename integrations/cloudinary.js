@@ -2,6 +2,7 @@
 const config = require('../config/config');
 const Cloudinary = require('cloudinary');
 const async = require('async');
+const _ = require('lodash');
 
 Cloudinary.config({
   url: config.CLOUDINARY_URL
