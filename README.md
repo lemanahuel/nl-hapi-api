@@ -3,7 +3,7 @@ Desarrollaremos un CRUD completo con una API RestFul con NODE + HAPI para persis
 
 ### Curso online en Udemy
 
-👉 https://www.udemy.com/programa-hoy-en-mongodb-con-mongoose/
+👉 https://www.udemy.com/hapi-mongodb-node-heroku
 
 ### Más cursos:
 
